@@ -22,7 +22,7 @@ for kk = 1%:length(D) % For each value of noise
 
             ydot = coupled_hkb_ode_ED08(time(ii),y(ii,:)); ydot = ydot';
 
-            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D(kk))*randn(size(ydot))*dt;
+            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D(kk)*dt)*randn(size(ydot));
 
             %Just a check to define boundary
 %             if y(ii,2) > -4
@@ -123,3 +123,4 @@ phi2=phi2(ncut:end-ncut);
 phi1 = unwrap(phi1);
 phi2 = unwrap(phi2);% unwrap phases
 synchroindex_filt = (mean(cos(phi1-phi2)))^2 + (mean(sin(phi1-phi2)))^2
+
