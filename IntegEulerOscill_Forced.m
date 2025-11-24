@@ -61,7 +61,7 @@ for freq = 1:20 %
             
             ydot = forced_hkb(F1,puls,time(i),y(i,:)); ydot = ydot';
             
-            y(i+1,:) = y(i,:) + dt*ydot + sqrt(2*D(1))*randn(size(ydot))*dt;            
+            y(i+1,:) = y(i,:) + dt*ydot + sqrt(2*D(1)*dt)*randn(size(ydot));            
 
         end 
    phaserel = phi(y(1000:end-1000,2),sin(puls*y(1000:end-1000,3)));
@@ -144,4 +144,5 @@ grid on
 xlabel('Frequency drive scaling')
 ylabel('mean phase')
 title('Mean phase difference, O -> forcing = 1, * -> forcing = 0.5')
+
 
