@@ -26,7 +26,7 @@ for kk = 1%:length(D) % For each value of noise
 %             end
             ydot = coupled_hkb_ode_ED08(time(ii),y(ii,:)); ydot = ydot';
             
-            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D(kk))*randn(size(ydot))*dt + pert ;
+            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D(kk)*dt)*randn(size(ydot)) + pert ;
             
             %Just a check to define boundary
 %             if y(ii,2) > -4
@@ -91,7 +91,7 @@ hist(phi(y(:,2),y(:,4)),bin);% histo phase relative
 title('phi brutes')
 subplot(3,3,8)
 hist(phi(F_y_2,F_y_4),bin);% histo phase relative
-title('phi filtrées')
+title('phi filtrÃ©es')
 subplot(3,6,17)
 fastfft(y(:,2),1,[1]);
 xlim([-0.004112 0.01254]);
@@ -106,7 +106,7 @@ ncut=100;
 
 ht=hilbert(y(:,2)-mean(y(:,2)));
 phi1=angle(ht);% estimation phase 1
-phi1=phi1(ncut:end-ncut);% virage début fin
+phi1=phi1(ncut:end-ncut);% virage dÃ©but fin
 ht=hilbert((y(:,4)-mean(y(:,4))));
 phi2=angle(ht);% estimation phase 2
 phi2=phi2(ncut:end-ncut);
@@ -120,10 +120,11 @@ synchroindex_brut = (mean(cos(phi1-phi2)))^2 + (mean(sin(phi1-phi2)))^2
 
 ht=hilbert(F_y_2-mean(F_y_2));
 phi1=angle(ht);% estimation phase 1
-phi1=phi1(ncut:end-ncut);% virage début fin
+phi1=phi1(ncut:end-ncut);% virage dÃ©but fin
 ht=hilbert(F_y_4-mean(F_y_4));
 phi2=angle(ht);% estimation phase 2
 phi2=phi2(ncut:end-ncut);
 phi1 = unwrap(phi1);
 phi2 = unwrap(phi2);% unwrap phases
+
 synchroindex_filt = (mean(cos(phi1-phi2)))^2 + (mean(sin(phi1-phi2)))^2
