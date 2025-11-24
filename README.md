@@ -62,8 +62,11 @@ This could connect to a two time scales system. To be continued...
 Miscelaneous
 
 Reference about the integration scheme: Higham, D. J. (2001). An algorithmic introduction to numerical simulation of stochastic differential equations. SIAM review, 43(3), 525-546.
-Or numerous textbooks (Risken, Platen, Gardiner, Kloeden, Haken). See Ito vs Stratonovitch calculi too.
-*Remember: When you integrate a white noise you obtain the Wiener process (Brownian motion)
+Or numerous textbooks (Risken, Platen, Gardiner, Kloeden, Haken). Check out Ito and Stratonovitch calculi.
+*Remember: When you integrate a white noise you obtain the Wiener process (maths for the Brownian motion)
+*white noise is the increment of a Wiener process, check out Ito calculus and discretization schemes for numerics.
+The variance of the Wiener process is dt, white noise is a special stochatic process, gaussian delta correlated,
+flat power spectrum by Wiener Khintchine theorem, and with standard deviation sqrt(dt).
 
 This could be done (future?) in Julia: see https://diffeq.sciml.ai/stable/tutorials/sde_example/
 
