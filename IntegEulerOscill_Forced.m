@@ -7,7 +7,11 @@ scrsz = get(0,'ScreenSize');
 % for 2 strength of forcing we vary the frequency of forcing
 %
 % use the function phi.m to estimate the relative phase
-% use Euler integration with noise: + sqrt(2*D(kk))*randn(size(ydot))*dt
+% use Euler integration with noise: 
+% param noise = sqrt(2*D*dt).*randn(size(xdot))
+% delta correlated, gaussian noise = white noise, which is increments of Wiener process,
+% Wiener process variance squales with dt;
+% sd of the white noise scales with sqrt(dt)
 % Higham, D. J. (2001). An algorithmic introduction to numerical simulation of stochastic differential equations. SIAM review, 43(3), 525-546.
 % Numerous textbooks (Riske, Platen, Gardiner, Kloeden, Haken)
 %% This could be done in Julia: see https://diffeq.sciml.ai/stable/tutorials/sde_example/
@@ -144,5 +148,6 @@ grid on
 xlabel('Frequency drive scaling')
 ylabel('mean phase')
 title('Mean phase difference, O -> forcing = 1, * -> forcing = 0.5')
+
 
 
