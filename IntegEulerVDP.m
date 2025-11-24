@@ -11,8 +11,9 @@
 % see Higham DJ 2001 An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
 % SIAM Review, 43(3), 525-546
 % param noise = sqrt(2*D*dt).*randn(size(xdot))
-% delta correlated, gaussian noise = white noise
-% sd of noise scales with sqrt(dt)
+% delta correlated, gaussian noise = white noise, which is increments of Wiener process,
+% Wiener process variance squales with dt;
+% sd of the white noise scales with sqrt(dt)
 
 
 global mu a eps omeg
@@ -65,3 +66,4 @@ plot(vFrequency(1:vec_fre_length),vAmplitude(1:vec_fre_length))
 grid on
 
 xlabel('Freq(hz)'), ylabel('power amplitude')
+
