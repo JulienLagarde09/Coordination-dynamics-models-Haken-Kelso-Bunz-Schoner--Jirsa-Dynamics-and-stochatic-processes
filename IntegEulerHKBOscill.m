@@ -1,7 +1,10 @@
 
 
 init = [0 0.3 0 0.3];
-
+% param noise = sqrt(2*D*dt).*randn(size(xdot))
+% delta correlated, gaussian noise = white noise, which is increments of Wiener process,
+% Wiener process variance squales with dt;
+% sd of the white noise scales with sqrt(dt)
 
 xin = init;
 dt = 0.01; % timestep
@@ -128,3 +131,4 @@ phi1 = unwrap(phi1);
 phi2 = unwrap(phi2);% unwrap phases
 
 synchroindex_filt = (mean(cos(phi1-phi2)))^2 + (mean(sin(phi1-phi2)))^2
+
