@@ -10,8 +10,9 @@
 % The integration is an Euler- Maruyama scheme (accurate for dt small)
 % see Higham DJ 2001 An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
 % SIAM Review, 43(3), 525-546
-% param noise = sqrt(2*D).*randn(size(xdot)).*dt
-% delta correlated, gaussian noise
+% param noise = sqrt(2*D*dt).*randn(size(xdot))
+% delta correlated, gaussian noise = white noise
+% sd of noise scales with sqrt(dt)
 
 
 global mu a eps omeg
@@ -40,7 +41,7 @@ y = [];
         y = xin; % Get Correct x & y as initial conditions        
         for ii = 1:length(time) % integrate over time            
             ydot = VDP_coupled(time(ii),y(ii,:)); ydot = ydot';            
-            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D)*randn(size(ydot))*dt;
+            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D*dt)*randn(size(ydot));
         end % for ii
 F_y_2 = y(:,1);
 F_y_4 = y(:,3);
@@ -62,4 +63,5 @@ subplot(325)
 [vFrequency, vAmplitude] = fastfft(zscore(F_y_2(100:end)), 1/dt, [0]);% use quick and dirty fft based estimation of DSP
 plot(vFrequency(1:vec_fre_length),vAmplitude(1:vec_fre_length))
 grid on
+
 xlabel('Freq(hz)'), ylabel('power amplitude')
