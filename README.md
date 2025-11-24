@@ -28,7 +28,7 @@ Brought to the front concepts and methods in brain sciences akin to:
 in sciences of complex systems.
 
 A set of Matlab codes to integrate that model at reduced dimensional level (collective variable/ order parameter),
-and at the level of the evolution of the components and movement itself using Euler scheme.
+and at the level of the evolution of the components and movement itself using Euler- Maruyama scheme.
 Contains several systems examples:
 1) HKB relative phase dynamics: Changing parameters controlling stability at the half time. See what happens!
 2) HKB coupled oscillators
@@ -69,7 +69,7 @@ This could be done (future?) in Julia: see https://diffeq.sciml.ai/stable/tutori
 
 Noise: HKB driven equation becomes a Langevin equation (stochastic differential eq; SDE)
 
-The basic Euler algo logic:
+The basic Euler-Maruyama algo logic:
 starts with initial conditions of state (init; thus t = 1 thus y = init), pass it into the ODE to compute
 the derivative noted ydot
 compute the change in state for the next time step (time(i) with dt*ydot and add
