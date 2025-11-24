@@ -46,7 +46,7 @@ y = init;
                 a = 4*b;% antiphase here is unstable thus switch to inphase which still stable
             end
             ydot = phase_hkb_ode(y(ii,:),a,b); ydot = ydot';
-            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D)*randn(size(ydot))*dt;  
+            y(ii+1,:) = y(ii,:) + dt*ydot + sqrt(2*D*dt)*randn(size(ydot));  
        
         end % for ii
 
@@ -62,4 +62,5 @@ title('stochastic dynamics of the relative phase in HKB')
 subplot(323)
 histogram(y, 50)
 xlabel('\phi (rad.)')
+
 ylabel('count')
